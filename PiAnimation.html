@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
 </head>
+<<<<<<< HEAD
 <body>
 <table style="border: 2px black">
     <tr>
@@ -21,28 +23,47 @@
 
 
 </table>
+=======
+>>>>>>> b3ef5083c37894c6f17028d77bfa49e2c5b3a0fa
+
+<body>
+    <table style="border: 2px black">
+        <tr>
+            <td>
+                <canvas width="600" height="600" id="canvas" style="border:5px red">
+                    Error
+                </canvas>
+            </td>
+            <td>
+                <h2 id="text">Pi: </h2>
+            </td>
+        </tr>
 
 
+    </table>
 
-<script>
-    var canvas=document.getElementById("canvas");
-    var ctx=canvas.getContext("2d");
-    var width=canvas.width;
-    var height=canvas.height;
-    var pi, averageCounter= 0, probabilityCounter= 0, average=0;
-    var area=width*height;
-    var textWindow=document.getElementById("text");
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var width = canvas.width;
+        var height = canvas.height;
+        var pi, averageCounter = 0,
+            probabilityCounter = 0,
+            average = 0;
+        var area = width * height;
+        var textWindow = document.getElementById("text");
 
-     var animate =
+        var animate =
             window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             function(callback) {
-                return setTimeout(callback, 1);
+                return setTimeout(callback, 16.67);
             };
 
+<<<<<<< HEAD
  console.log("initialized variables", width+" ", height );
     var textRect=new Rect(10,50, 400, 100);
 
@@ -61,88 +82,124 @@
         this.radius = radius;
    //     this.dx = Math.random() * 5;
      //   this.dy = Math.random() * 5;
+=======
+        console.log("initialized variables", width + " ", height);
+        var textRect = new Rect(10, 50, 400, 100);
+>>>>>>> b3ef5083c37894c6f17028d77bfa49e2c5b3a0fa
 
+        function Rect(x, y, width, height) {
+            this.x = x;
+            var y = y;
+            var width = width;
+            var height = height;
+            // var filled=false;
+            // var fillColor='#FFFFFF'
+        }
 
-    }
-    function clearScreen() {
-        ctx.clearRect(0,0,width,height);
-    }
+        function Circle(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            // this.dx = Math.random() * 5;
+            // this.dy = Math.random() * 5;
+        }
 
+        function clearScreen() {
+            ctx.clearRect(0, 0, width, height);
+        }
 
-            //filled
-    function drawCircle(circle) {
-        if(circle.x==null||circle.y==null||circle.radius==null) console.log("circle not initialized");
-        ctx.beginPath()
-        ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-        ctx.closePath();
+        //filled
+        function drawCircle(circle) {
+            if (circle.x == null || circle.y == null || circle.radius == null) console.log("circle not initialized");
+            ctx.beginPath()
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            ctx.closePath();
 
+<<<<<<< HEAD
         // color in the circle
         //red
         ctx.fillStyle = "#FF0000";
         ctx.fill();
 
     }
+=======
+            // color in the circle
+            //red
+            ctx.fillStyle = "#FF0000";
+            ctx.fill();
+            //need to be clear for dots to appear
+            //  ctx.strokeStyle='#FF0000'
+            //  ctx.stroke();
+        }
+>>>>>>> b3ef5083c37894c6f17028d77bfa49e2c5b3a0fa
 
         function drawCircleStroke(circle) {
-            if(circle.x==null||circle.y==null||circle.radius==null) console.log("circle not initialized");
+            if (circle.x == null || circle.y == null || circle.radius == null) console.log("circle not initialized");
             ctx.beginPath()
             ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
             ctx.closePath();
 
+<<<<<<< HEAD
+=======
+            // color in the circle
+            //red
+            // ctx.fillStyle = "#FF0000";
+            //ctx.fill();
+>>>>>>> b3ef5083c37894c6f17028d77bfa49e2c5b3a0fa
             //need to be clear for dots to appear
-              ctx.strokeStyle='#000000'
-              ctx.stroke();
+            ctx.strokeStyle = '#000000'
+            ctx.stroke();
         }
-
-
-
-
 
         function init() {
             console.log("init called")
-            var circle=new Circle(width/2, height/2, (width+height)/4);
-            var precision=1000;
+            var circle = new Circle(width / 2, height / 2, (width + height) / 4);
+            var precision = 1000;
             drawCircleStroke(circle);
+
             function run() {
-                        animate(run);
+                animate(run);
                 console.log("run called");
-                for(var i=0; i<precision; i++) {
-                    var xvar=Math.random()*width, yvar=Math.random()* height;
-                    var dot=new Circle(xvar, yvar, 1);
-                                                // < or > to check if it's inside the circle
-                    if( Math.pow(xvar,2)+Math.pow(yvar,2) < Math.pow(circle.radius,2))
+                for (var i = 0; i < precision; i++) {
+                    var xvar = Math.random() * width,
+                        yvar = Math.random() * height;
+                    var dot = new Circle(xvar, yvar, 1);
+                    // < or > to check if it's inside the circle
+                    if (Math.pow(xvar, 2) + Math.pow(yvar, 2) < Math.pow(circle.radius, 2))
                         probabilityCounter++;
                 }
                 /*
                 I'm only drawing the last dot of the loop because if i did every dot, the canvas would fill to quickly
-                 */
+                */
                 drawCircle(dot);
 
+                //#math
 
-                    //#math
+                average = (((averageCounter) * average) + (probabilityCounter / precision)) / (averageCounter + 1);
+                averageCounter++;
 
-                    average= ( ((averageCounter)* average)+(probabilityCounter/precision)  ) / (averageCounter+1);
-                    averageCounter++;
-
-
-                    pi=4*average*area/(Math.pow(circle.radius,2));
+                pi = 4 * average * area / (Math.pow(circle.radius, 2));
 
                 //clear the display for the current value of pi
                 //add a container rect for the value of pi
                 //display the value for pi
+<<<<<<< HEAD
                     textWindow.innerHTML="Pi is: "+pi;
                     document.getElementById("samples").innerHTML="# of Samples: "+ averageCounter+" #of Trials: "+averageCounter*precision;
                 console.log("pi/true mean: ", pi+" ", "x: ", xvar+" ", "y: ", yvar+" ", "average%: ", 1-average+" ", "samples: ", averageCounter+" ", "Number of success: ", probabilityCounter);
+=======
+                textWindow.innerHTML = "Pi ≈ " + pi + "</br>Trials: " + averageCounter * precision;
+                console.log("pi/true mean: ", pi + " ", "x: ", xvar + " ", "y: ", yvar + " ", "average%: ", 1 - average + " ", "samples: ", averageCounter + " ", "Number of success: ", probabilityCounter);
+>>>>>>> b3ef5083c37894c6f17028d77bfa49e2c5b3a0fa
                 //reset probabilityCounter
-                probabilityCounter=0;
+                probabilityCounter = 0;
             }
             run();
         }
 
-
-  init();
-
-</script>
+        init();
+    </script>
 
 </body>
+
 </html>
