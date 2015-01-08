@@ -38,7 +38,7 @@
             window.msRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             function(callback) {
-                return setTimeout(callback, 1);
+                return setTimeout(callback, 16.67);
             };
 
  console.log("initialized variables", width+" ", height );
